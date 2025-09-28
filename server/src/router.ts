@@ -2,12 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
 import adminActions from "./modules/admin/adminActions";
-// Define item-related routes
 import artworkActions from "./modules/artwork/artworkActions";
 import favoriteActions from "./modules/favorite/favoriteActions";
 import itemActions from "./modules/item/itemActions";
@@ -29,7 +24,7 @@ router.post(
   "/api/user",
   validation.userValidation,
   auth.hashedPassword,
-  userActions.add,
+  userActions.add
 );
 
 router.post("/api/login", auth.login);
@@ -43,7 +38,7 @@ router.get("/api/artwork", artworkActions.browse);
 router.get("/api/artwork/artwork-category", artworkActions.readArtworkCategory);
 router.get(
   "/api/artwork/category/:categoryName",
-  artworkActions.readArtworkCategory,
+  artworkActions.readArtworkCategory
 );
 router.get("/api/artwork/:id", artworkActions.readArtworkById);
 router.get("/api/artwork/:id/artist", artworkActions.readArtworkWithArtistById);
@@ -52,27 +47,27 @@ router.put(
   auth.authenticateUser,
   file.imageUpload,
   file.appImage,
-  artworkActions.edit,
+  artworkActions.edit
 );
 router.get(
   "/api/artist/:id/artworks",
   auth.authenticateUser,
-  artworkActions.readUserAccount,
+  artworkActions.readUserAccount
 );
 router.get(
   "/api/artist/:userId/artworks/:artworkId",
-  artworkActions.readArtworkUserById,
+  artworkActions.readArtworkUserById
 );
 router.delete(
   "/api/artworks/:id",
   auth.authenticateUser,
-  artworkActions.deleteArtwork,
+  artworkActions.deleteArtwork
 );
 router.post(
   "/api/artworks",
   file.imageUpload,
   file.appImage,
-  artworkActions.createArtwork,
+  artworkActions.createArtwork
 );
 
 router.get("/api/artist/:id", userActions.browseArtistArtworks);
@@ -82,13 +77,13 @@ router.put(
   "/api/user/:id",
   file.imageUpload,
   file.appImage,
-  userActions.editUser,
+  userActions.editUser
 );
 
 /* ************************************************************************* */
 router.get(
   "/api/carousel/:categoryName",
-  artworkActions.browseCarouselArtworks,
+  artworkActions.browseCarouselArtworks
 );
 
 /* ************************************************************************* */
@@ -96,7 +91,7 @@ router.get("/api/purchase", purchaseActions.browse);
 router.post(
   "/api/purchase",
   auth.authenticateUser,
-  purchaseActions.purchaseArtworks,
+  purchaseActions.purchaseArtworks
 );
 /* ************************************************************************* */
 
@@ -105,7 +100,7 @@ router.get("/api/user/:userId/favorite", favoriteActions.favoriteArtwork);
 router.get("/api/favorite", favoriteActions.browse);
 router.delete(
   "/api/user/:userId/favorite/:artworkId",
-  favoriteActions.removeFavorite,
+  favoriteActions.removeFavorite
 );
 /* ************************************************************************* */
 router.get("/api/news", newActions.browse);
@@ -115,31 +110,31 @@ router.get(
   "/api/admin/users",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.browseUsers,
+  adminActions.browseUsers
 );
 router.delete(
   "/api/admin/user/:id",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.deleteUser,
+  adminActions.deleteUser
 );
 router.get(
   "/api/admin/artworks",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.browseArtworks,
+  adminActions.browseArtworks
 );
 router.delete(
   "/api/admin/artwork/:id",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.deleteArtwork,
+  adminActions.deleteArtwork
 );
 router.get(
   "/api/admin/events",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.browseEvents,
+  adminActions.browseEvents
 );
 router.put(
   "/api/admin/event/:id",
@@ -147,13 +142,13 @@ router.put(
   admin.adminAuth,
   file.imageUpload,
   file.appImage,
-  adminActions.editEvent,
+  adminActions.editEvent
 );
 router.get(
   "/api/admin/news",
   auth.authenticateUser,
   admin.adminAuth,
-  adminActions.browseNews,
+  adminActions.browseNews
 );
 router.put(
   "/api/admin/new/:id",
@@ -161,6 +156,6 @@ router.put(
   admin.adminAuth,
   file.imageUpload,
   file.appImage,
-  adminActions.editNews,
+  adminActions.editNews
 );
 export default router;
